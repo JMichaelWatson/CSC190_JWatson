@@ -10,3 +10,9 @@
 *.unsuccessfulbuild
 *.opensdf
 *.sdf
+*.obj
+*.exp
+*.dll
+*.dll
+*.ilk
+*.lib
