@@ -1,0 +1,12 @@
+*.sln
+*.vcxproj
+*.suo
+*.filters
+*.tlog
+*.lastbuildstate
+*.log
+*.idb
+*.pdb
+*.unsuccessfulbuild
+*.opensdf
+*.sdf
