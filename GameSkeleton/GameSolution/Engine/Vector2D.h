@@ -47,8 +47,7 @@ namespace Engine
 
 	Vector2D Normalized(const Vector2D& vector){
 		float length = Length(vector);
-		return vector / length;
-		
+		return vector / length;		
 	}
 	
 	float Dot(const Vector2D& left, const Vector2D& right){
@@ -64,11 +63,16 @@ namespace Engine
 	}
 
 	Vector2D Projection(const Vector2D& a, const Vector2D& b){
-		return Vector2D(((a.x * b.x)/Length(b)),((a.y * b.y)/Length(b))); 
-	}
+		/*Vector2D normal = Normalized(b);
+		return Vector2D((a.x * normal.x),(a.y * normal.y)); */
+		float vect1lenght = Length(a);
+		float projectionLength = Dot(a,b) / vect1lenght;
+		Vector2D vect1Normal = Normalized(a);
+		return (vect1Normal * projectionLength);
+	}    
 
 	Vector2D Rejection(const Vector2D& a, const Vector2D& b){
-		return Vector2D(a.x - (b.x/Length(b)), a.y - (b.y/Length(b)));
+		return (b - Projection(a, b));
 	}
 }
 
