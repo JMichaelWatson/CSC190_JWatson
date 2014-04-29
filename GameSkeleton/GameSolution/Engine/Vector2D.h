@@ -62,6 +62,14 @@ namespace Engine
 	Vector2D CCW(const Vector2D& vector){
 		return Vector2D(vector.y, -(vector.x));
 	}
+
+	Vector2D Projection(const Vector2D& a, const Vector2D& b){
+		return Vector2D(((a.x * b.x)/Length(b)),((a.y * b.y)/Length(b))); 
+	}
+
+	Vector2D Rejection(const Vector2D& a, const Vector2D& b){
+		return Vector2D(a.x - (b.x/Length(b)), a.y - (b.y/Length(b)));
+	}
 }
 
 #endif
