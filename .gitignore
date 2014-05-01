@@ -1,7 +1,3 @@
-*.sln
-*.vcxproj
-*.suo
-*.filters
 *.tlog
 *.lastbuildstate
 *.log
@@ -12,7 +8,5 @@
 *.sdf
 *.obj
 *.exp
-*.dll
-*.dll
 *.ilk
 *.lib
