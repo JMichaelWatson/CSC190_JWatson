@@ -21,10 +21,10 @@ Vector2D cwPerpendicular;
 Vector2D ccwPerpendicular;
 
 void MyPerpendicularEqautionCallBack(const PerpendicularData& data){
-	left = Vector2D(data.x, data.y);
-	normal = Engine::Normalized(left);
-	cwPerpendicular = Engine::CW(left);
-	ccwPerpendicular = Engine::CCW(left);
+	original = Vector2D(data.x, data.y);
+	normal = Engine::Normalized(original);
+	cwPerpendicular = Engine::CW(original);
+	ccwPerpendicular = Engine::CCW(original);
 }
 Vector2D dotLeft;
 Vector2D dotRight;
