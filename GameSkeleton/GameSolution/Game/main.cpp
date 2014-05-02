@@ -1,10 +1,18 @@
 #include "Engine.h"
 #include "Core.h"
+//#include "Shape.h"
+//#include "DrawValue.h"
+//#include "GameObject.h"
+//#include "Spaceship.h"
 
 using Core::Input;
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
+
+
+//DrawValue dValue;
+
 
 bool Update (float dt){
 	dt;
