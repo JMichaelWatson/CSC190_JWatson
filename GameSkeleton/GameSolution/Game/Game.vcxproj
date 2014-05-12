@@ -87,10 +87,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DrawValue.cpp" />
+    <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Ship.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawValue.h" />
+    <ClInclude Include="EnemyShip.h" />
+    <ClInclude Include="Ship.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
