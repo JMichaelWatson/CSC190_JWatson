@@ -31,5 +31,11 @@
     <ClInclude Include="Vector2D.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="Matrix2D.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3D.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

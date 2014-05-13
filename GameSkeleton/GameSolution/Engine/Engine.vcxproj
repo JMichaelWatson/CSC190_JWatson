@@ -94,6 +94,8 @@
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="ExportHeader.h" />
+    <ClInclude Include="Matrix2D.h" />
+    <ClInclude Include="Matrix3D.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

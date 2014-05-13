@@ -1,8 +1,10 @@
 #include "RenderUI.h"
 #include "Engine.h"
 #include "Vector2D.h"
+#include "Matrix2D.h"
 
 using Engine::Vector2D;
+using Engine::Matrix2D;
 
 Vector2D left;
 Vector2D right;
@@ -60,6 +62,23 @@ void MyLerbEquationCallBack(const LerpData& data)
 	bLerp = data.beta * lerpRight;
 }
 
+Matrix2D mat1;
+Vector2D mat2;
+Vector2D matResult;
+
+void myBasicMatrixMult(const LinearTransformationData& data){
+	mat1.m[0][0] = data.m00;
+	mat1.m[1][0] = data.m10;
+	mat1.m[0][1] = data.m01;
+	mat1.m[1][1] = data.m11;
+	mat2.x = data.v0;
+	mat2.y = data.v1;
+
+	matResult = mat1 * mat2;
+
+}
+
+
 
 int main(int argc, char* argv[])
 {
@@ -71,7 +90,7 @@ int main(int argc, char* argv[])
 	renderUI.setPerpendicularData(original, normal , cwPerpendicular, ccwPerpendicular, MyPerpendicularEqautionCallBack);
 	renderUI.setDotProductData(dotLeft, dotRight, projection, rejection, MyDotProductEquationCallBack);
 	renderUI.setLerpData(lerpLeft, lerpRight, aMinusb, aLerp, bLerp, lerpResult, MyLerbEquationCallBack);
-	
+	renderUI.setLinearTransformationData(matResult,myBasicMatrixMult);
 	if( ! renderUI.initialize(argc, argv))
 		return -1;
 	return renderUI.run();

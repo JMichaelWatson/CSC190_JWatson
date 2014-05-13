@@ -1,6 +1,5 @@
 #include<sstream>
 #include"DrawValue.h"
-#include<string>
 
 using std::stringstream;
 
