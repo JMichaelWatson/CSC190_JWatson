@@ -97,6 +97,7 @@
     <ClInclude Include="Matrix2D.h" />
     <ClInclude Include="Matrix3D.h" />
     <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
