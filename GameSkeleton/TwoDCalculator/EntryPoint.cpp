@@ -156,19 +156,24 @@ int numLines = sizeof(lines) / (sizeof(*lines) * 2);
 Matrix3D matrixArray[10];
 Matrix3D currentTran;
 void myTanslationCallBack(const MatrixTransformData2D& data){
-	Matrix3D mScale;
+	/*Matrix3D mScale;
 	mScale = Engine::ScaleX3D(data.scaleX);
 	Matrix3D mScale2;
 	mScale2 = Engine::ScaleY3D(data.scaleY);
 	Matrix3D mTranslation;
 	mTranslation = Engine::Translation3D(data.translateX, data.translateY);
 	Matrix3D mRotate;
-	mRotate = Engine::Rotation3D(data.rotate);
-	//matrixArray[data.selectedMatrix] = mRotate;//* (mScale*mScale2);
-	matrixArray[data.selectedMatrix] = mTranslation * mRotate * (mScale*mScale2);
+	mRotate = Engine::Rotation3D(data.rotate);*/
+	//matrixArray[data.selectedMatrix] =(mScale*mScale2);
+	//matrixArray[data.selectedMatrix] = (mScale*mScale2) * mRotate * mTranslation;
+	Matrix3D temp = Engine::ScaleX3D(data.scaleX) * Engine::ScaleY3D(data.scaleY) * Engine::Rotation3D(data.rotate) * Engine::Translation3D(data.translateX, data.translateY);
+	matrixArray[data.selectedMatrix] = temp;
+	
+	currentTran = Matrix3D();
+
 	for(int i =0; i < 10; i ++)
 	{
-	currentTran = currentTran * matrixArray[i];
+		currentTran = currentTran * matrixArray[i];
 	}
 	
 }
@@ -185,7 +190,11 @@ int main(int argc, char* argv[])
 	renderUI.setLerpData(lerpLeft, lerpRight, aMinusb, aLerp, bLerp, lerpResult, MyLerbEquationCallBack);
 	renderUI.setLinearTransformationData(matResult,myBasicMatrixMult);
 	renderUI.setAffineTransformationData(mat3Dresult[0],myAflineTransformationCallBack);
-	renderUI.set2DMatrixVerticesTransformData(lines[0], numLines,matrixArray[0],currentTran,myTanslationCallBack);
+	
+	
+	renderUI.set2DMatrixVerticesTransformData(lines[0], numLines, matrixArray[0], currentTran,myTanslationCallBack);
+	
+	
 	if( ! renderUI.initialize(argc, argv))
 		return -1;
 	return renderUI.run();

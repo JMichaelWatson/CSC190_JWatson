@@ -16,7 +16,7 @@ namespace Engine{
 		float m[3][3];
 	public:
 		Matrix3D(){
-			for ( int x= 0; x < 3; x++){
+			/*for ( int x= 0; x < 3; x++){
 				for ( int y=0; y < 3; y++){
 					if(x == y){
 						m[x][y] = 1.0f;
@@ -24,9 +24,21 @@ namespace Engine{
 						m[x][y] = 0.0f;
 					}
 				}
-			}
+			}*/
+			m[0][0] = 1.0f;
+			m[0][1] = 0.0f;
+			m[0][2] = 0.0f;
+
+			m[1][0] = 0.0f;
+			m[1][1] = 1.0f;
+			m[1][2] = 0.0f;
+
+			m[2][0] = 0.0f;
+			m[2][1] = 0.0f;
+			m[2][2] = 1.0f;
 		}
 		Matrix3D(Vector2D vect1, Vector2D vect2){
+			Matrix3D();
 			m[0][0] = vect1.x;
 			m[1][0] = vect1.y;
 			m[0][1] = vect2.x;
@@ -58,21 +70,21 @@ namespace Engine{
 		return mScale;
 	}
 
-	inline Matrix3D  ScaleX3D(const float& scale){
+	inline Matrix3D  ScaleX3D(float scale){
 		Matrix3D mScale;
 		mScale.m[0][0] = scale;
 
 		return mScale;
 	}
 
-	 inline Matrix3D ScaleY3D(const float& scale){
+	 inline Matrix3D ScaleY3D(float scale){
 		Matrix3D mScale;
 		mScale.m[1][1] = scale;
 
 		return mScale;
 	}
 
-	 inline Matrix3D Translation3D(const float& x, const float& y){
+	 inline Matrix3D Translation3D(float x, float y){
 		Matrix3D translation;
 		translation.m[0][2] = x;
 		translation.m[1][2] = y;
@@ -88,17 +100,17 @@ namespace Engine{
 
 	inline Matrix3D operator*(const Matrix3D& mat1, const Matrix3D& mat2){
 		Matrix3D result;
-		result.m[0][0] = (mat1.m[0][0] * mat2.m[0][0]) + (mat1.m[0][1] * mat2.m[1][0]) + (mat1.m[0][2] * mat2.m[2][0]);
-		result.m[0][1] = (mat1.m[0][0] * mat2.m[0][1]) + (mat1.m[0][1] * mat2.m[1][1]) + (mat1.m[0][2] * mat2.m[2][1]);
-		result.m[0][2] = (mat1.m[0][0] * mat2.m[0][2]) + (mat1.m[0][1] * mat2.m[1][1]) + (mat1.m[0][2] * mat2.m[2][2]);
+		result.m[0][0] = (mat1.m[0][0] * mat2.m[0][0]) + (mat1.m[0][1] * mat2.m[1][0]);
+		result.m[0][1] = (mat1.m[0][0] * mat2.m[0][1]) + (mat1.m[0][1] * mat2.m[1][1]);
+		result.m[0][2] = (mat1.m[0][0] * mat2.m[0][2]) + (mat1.m[0][1] * mat2.m[1][2]) + (mat1.m[0][2]);
 
-		result.m[1][0] = (mat1.m[1][0] * mat2.m[0][0]) + (mat1.m[1][1] * mat2.m[1][0]) + (mat1.m[1][2] * mat2.m[2][0]);		
-		result.m[1][1] = (mat1.m[1][0] * mat2.m[0][1]) + (mat1.m[1][1] * mat2.m[1][1]) + (mat1.m[1][2] * mat2.m[2][1]);
-		result.m[1][2] = (mat1.m[1][0] * mat2.m[0][2]) + (mat1.m[1][1] * mat2.m[1][1]) + (mat1.m[1][2] * mat2.m[2][2]);
+		result.m[1][0] = (mat1.m[1][0] * mat2.m[0][0]) + (mat1.m[1][1] * mat2.m[1][0]);		
+		result.m[1][1] = (mat1.m[1][0] * mat2.m[0][1]) + (mat1.m[1][1] * mat2.m[1][1]);
+		result.m[1][2] = (mat1.m[1][0] * mat2.m[0][2]) + (mat1.m[1][1] * mat2.m[1][2]) + (mat1.m[1][2]);
 
-		result.m[2][0] = (mat1.m[2][0] * mat2.m[0][0]) + (mat1.m[2][1] * mat2.m[1][0]) + (mat1.m[2][2] * mat2.m[2][0]);		
-		result.m[2][1] = (mat1.m[2][0] * mat2.m[0][1]) + (mat1.m[2][1] * mat2.m[1][1]) + (mat1.m[2][2] * mat2.m[2][1]);
-		result.m[2][2] = (mat1.m[2][0] * mat2.m[0][2]) + (mat1.m[2][1] * mat2.m[1][1]) + (mat1.m[2][2] * mat2.m[2][2]);
+		result.m[2][0] = 0.0f;		
+		result.m[2][1] = 0.0f;
+		result.m[2][2] = 1.0f;
 
 		return result;
 	}
