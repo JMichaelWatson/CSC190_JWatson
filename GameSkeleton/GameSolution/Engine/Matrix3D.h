@@ -33,7 +33,11 @@ namespace Engine{
 			m[1][1] = vect2.y;
 		}
 		operator float*() {return &m[0][0];}
-			inline Matrix3D Rotation3D(float angle){
+			
+	};
+
+
+	inline Matrix3D Rotation3D(float angle){
 		Matrix3D rotation;
 		float c = cos(angle);
 		float s = sin(angle);
@@ -46,7 +50,7 @@ namespace Engine{
 		return rotation;
 	}
 
-	Matrix3D Scale3D(const float& scale){
+	inline Matrix3D Scale3D(const float& scale){
 		Matrix3D mScale;
 		mScale.m[0][0] = scale;
 		mScale.m[1][1] = scale;
@@ -54,35 +58,33 @@ namespace Engine{
 		return mScale;
 	}
 
-	Matrix3D ScaleX3D(const float& scale){
+	inline Matrix3D  ScaleX3D(const float& scale){
 		Matrix3D mScale;
 		mScale.m[0][0] = scale;
 
 		return mScale;
 	}
 
-	 Matrix3D ScaleY3D(const float& scale){
+	 inline Matrix3D ScaleY3D(const float& scale){
 		Matrix3D mScale;
 		mScale.m[1][1] = scale;
 
 		return mScale;
 	}
 
-	 Matrix3D Translation3D(const float& x, const float& y){
+	 inline Matrix3D Translation3D(const float& x, const float& y){
 		Matrix3D translation;
 		translation.m[0][2] = x;
 		translation.m[1][2] = y;
 		return translation;
 	}
 
-	 Matrix3D Translation3D(const Vector2D& vect){
+	 inline Matrix3D Translation3D(const Vector2D& vect){
 		Matrix3D translation;
 		translation.m[0][2] = vect.x;
 		translation.m[1][2] = vect.y;
 		return translation;
 	}
-	};
-
 
 	inline Matrix3D operator*(const Matrix3D& mat1, const Matrix3D& mat2){
 		Matrix3D result;
@@ -105,6 +107,22 @@ namespace Engine{
 		Vector3D result;
 		result.x = (mat1.m[0][0] * vect2.x) + (mat1.m[0][1] * vect2.y) + (mat1.m[0][2] * 1);
 		result.y = (mat1.m[1][0] * vect2.x) + (mat1.m[1][1] * vect2.y) + (mat1.m[1][2] * 1);
+
+		return result;
+	}
+
+	inline Vector3D operator*(const Vector2D& vect2, const Matrix3D& mat1){
+		Vector3D result;
+		result.x = (mat1.m[0][0] * vect2.x) + (mat1.m[0][1] * vect2.y) + (mat1.m[0][2] * 1);
+		result.y = (mat1.m[1][0] * vect2.x) + (mat1.m[1][1] * vect2.y) + (mat1.m[1][2] * 1);
+
+		return result;
+	}
+
+	inline Vector3D operator*(const Vector3D& vect2, const Matrix3D& mat1){
+		Vector3D result;
+		result.x = (mat1.m[0][0] * vect2.x) + (mat1.m[0][1] * vect2.y) + (mat1.m[0][2] * vect2.z);
+		result.y = (mat1.m[1][0] * vect2.x) + (mat1.m[1][1] * vect2.y) + (mat1.m[1][2] * vect2.z);
 
 		return result;
 	}

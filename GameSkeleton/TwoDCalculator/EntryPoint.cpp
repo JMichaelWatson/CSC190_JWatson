@@ -156,10 +156,16 @@ int numLines = sizeof(lines) / (sizeof(*lines) * 2);
 Matrix3D matrixArray[10];
 Matrix3D currentTran;
 void myTanslationCallBack(const MatrixTransformData2D& data){
-	matrixArray[data.selectedMatrix].ScaleX3D(data.scaleX);
-	matrixArray[data.selectedMatrix].ScaleY3D(data.scaleY);
-	matrixArray[data.selectedMatrix].Translation3D(data.translateX, data.translateY);
-	matrixArray[data.selectedMatrix].Rotation3D(data.rotate);
+	Matrix3D mScale;
+	mScale = Engine::ScaleX3D(data.scaleX);
+	Matrix3D mScale2;
+	mScale2 = Engine::ScaleY3D(data.scaleY);
+	Matrix3D mTranslation;
+	mTranslation = Engine::Translation3D(data.translateX, data.translateY);
+	Matrix3D mRotate;
+	mRotate = Engine::Rotation3D(data.rotate);
+	//matrixArray[data.selectedMatrix] = mRotate;//* (mScale*mScale2);
+	matrixArray[data.selectedMatrix] = mTranslation * mRotate * (mScale*mScale2);
 	for(int i =0; i < 10; i ++)
 	{
 	currentTran = currentTran * matrixArray[i];

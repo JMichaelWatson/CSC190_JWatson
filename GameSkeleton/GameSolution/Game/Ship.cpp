@@ -4,30 +4,30 @@
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 750;
 
-	Vector2D shipPoints[]={
-		Vector2D(-3.0f, -22.0f),
-		Vector2D(+3.0f, -22.0f),
-		Vector2D(+3.0f, -22.0f),
-		Vector2D(+7.0f,-12.0f),
-		Vector2D(+5.0f, +12.0f),
-		Vector2D(+20.0f, -5.0f), 
-		Vector2D(+10.0f, +30.0f),
-		Vector2D(+0.0f, +18.0f),
-		Vector2D(-10.0f, +30.0f),
-		Vector2D(-20.0f, -5.0f),
-		Vector2D(-5.0f, +12.0f),
-		Vector2D(-7.0f, -12.0f),
-	};
+Vector2D shipPoints[]={
+	Vector2D(-3.0f, -22.0f),
+	Vector2D(+3.0f, -22.0f),
+	Vector2D(+3.0f, -22.0f),
+	Vector2D(+7.0f,-12.0f),
+	Vector2D(+5.0f, +12.0f),
+	Vector2D(+20.0f, -5.0f), 
+	Vector2D(+10.0f, +30.0f),
+	Vector2D(+0.0f, +18.0f),
+	Vector2D(-10.0f, +30.0f),
+	Vector2D(-20.0f, -5.0f),
+	Vector2D(-5.0f, +12.0f),
+	Vector2D(-7.0f, -12.0f),
+};
 
-	Vector2D border[] = {
+Vector2D border[] = {
 	Vector2D((float)SCREEN_WIDTH/2, 0.0f),
 	Vector2D((float)SCREEN_WIDTH, (float)SCREEN_HEIGHT/2),
 	Vector2D((float)SCREEN_WIDTH/2, (float)SCREEN_HEIGHT),
 	Vector2D(0.0f, (float)SCREEN_HEIGHT/2)
 };
 
-	char mode = 'w';
-	DrawValue dValue;
+char mode = 'w';
+DrawValue dValue;
 void Ship::drawShip(Graphics& graphics){
 	char* response1 = "Current mode: ";
 	char* response ="";
@@ -45,7 +45,7 @@ void Ship::drawShip(Graphics& graphics){
 	graphics.SetColor(RGB(100,200,100));
 	graphics.DrawString(100,60,response);
 	dValue.drawValue(graphics, 100,100, position);
-	graphics.SetColor(RGB(200,175,30));
+	graphics.SetColor(RGB(200,75,30));
 	const unsigned int numLines = sizeof(shipPoints) / sizeof(*shipPoints);
 	for(unsigned int x = 0; x < numLines; x++){
 		const Vector2D& first = shipPoints[x] + position;
@@ -54,11 +54,14 @@ void Ship::drawShip(Graphics& graphics){
 			second.x, second.y);
 
 	}
-	for(unsigned int x = 0; x < 4; x++){
-		const Vector2D& first = border[x];
-		const Vector2D& second = border[(x+1) % 4];
-		graphics.DrawLine(first.x, first.y,
-			second.x, second.y);
+	graphics.SetColor(RGB(200,175,30));
+	if(mode == 'a'){
+		for(unsigned int x = 0; x < 4; x++){
+			const Vector2D& first = border[x];
+			const Vector2D& second = border[(x+1) % 4];
+			graphics.DrawLine(first.x, first.y,
+				second.x, second.y);
+		}
 	}
 }
 const int MAXSPEED = 1000;
@@ -74,7 +77,7 @@ void Ship::update(float dt){
 	if(Core::Input::IsPressed(51)){
 		mode = 'a';
 	}
-	
+
 	if(Core::Input::IsPressed(Core::Input::KEY_RIGHT)){
 		if(velocity.x <= MAXSPEED){
 			velocity.x += dt * PIXELSPEED;

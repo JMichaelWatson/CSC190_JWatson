@@ -25,7 +25,6 @@ void EnemyShip::drawShip(Graphics& graphics)
 	for(unsigned int x = 0; x < numLines; x++){
 		const Vector2D& first = enemyshipPoints[x] + position;
 		const Vector2D& second = enemyshipPoints[(x+1) % numLines] + position;
-		position;
 		graphics.DrawLine(first.x, first.y,
 			second.x, second.y);
 	}
