@@ -20,7 +20,7 @@ void Orbitz::draw(Graphics& graphics, Vector2D position, float scale){
 	}
 	if(scale > 1.0f){
 		
-		Vector2D temp(info.m[0][2] * 2, info.m[1][2]);
+		Vector2D temp(info.m[0][2], info.m[1][2]);
 		Orbitz::draw(graphics,temp,scale/2);
 	}
 	
