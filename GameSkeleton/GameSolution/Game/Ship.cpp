@@ -1,8 +1,12 @@
 #include "Ship.h"
 #include "DrawValue.h"
+#include "Orbitz.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 750;
+
+Orbitz orb;
+Orbitz orb2;
 
 Vector2D shipPoints[]={
 	Vector2D(-3.0f, -22.0f),
@@ -44,12 +48,18 @@ void Ship::drawShip(Graphics& graphics){
 	graphics.DrawString(100,50,response1); 
 	graphics.SetColor(RGB(100,200,100));
 	graphics.DrawString(100,60,response);
-	dValue.drawValue(graphics, 100,100, position);
+
+	dValue.drawValue(graphics,100,100,info);
 	graphics.SetColor(RGB(200,75,30));
+	dValue.drawValue(graphics,100,150,angle);
+
+	position.x = info.m[0][2];
+	position.y = info.m[1][2];
+
 	const unsigned int numLines = sizeof(shipPoints) / sizeof(*shipPoints);
 	for(unsigned int x = 0; x < numLines; x++){
-		const Vector2D& first = shipPoints[x] + position;
-		const Vector2D& second = shipPoints[(x+1) % numLines] + position;
+		const Vector3D& first = shipPoints[x] * info;
+		const Vector3D& second = shipPoints[(x+1) % numLines] * info;
 		graphics.DrawLine(first.x, first.y,
 			second.x, second.y);
 
@@ -63,47 +73,61 @@ void Ship::drawShip(Graphics& graphics){
 				second.x, second.y);
 		}
 	}
+	orb.draw(graphics, position, 4.0f);
+	/*Vector2D temp(orb.info.m[0][2], orb.info.m[1][2]);
+	orb2.draw(graphics,temp);*/
 }
 const int MAXSPEED = 1000;
 const int PIXELSPEED = 500;
 void Ship::update(float dt){
-
+	accel.x = 0;
+	accel.y = -10;
+	Matrix3D mRotation;
+	mRotation = Engine::Rotation3D(angle);
 	if(Core::Input::IsPressed(49)){
 		mode = 'w';
 	}
 	if(Core::Input::IsPressed(50)){
 		mode = 'b';
 	}
-	if(Core::Input::IsPressed(51)){
+	if(Core::Input::IsPressed(51)){ 
 		mode = 'a';
 	}
 
 	if(Core::Input::IsPressed(Core::Input::KEY_RIGHT)){
-		if(velocity.x <= MAXSPEED){
-			velocity.x += dt * PIXELSPEED;
-		}
+		angle -= .05f;
+		accel = accel * Engine::Rotation3D(angle);
 	}
 	if(Core::Input::IsPressed(Core::Input::KEY_LEFT)){
-		if(velocity.x >= -MAXSPEED){
-			velocity.x -= dt * PIXELSPEED; 
-		}
+		angle += .05f;
+		accel = accel * Engine::Rotation3D(angle);
 	}
 	if(Core::Input::IsPressed(Core::Input::KEY_DOWN)){
 		if(velocity.y <= MAXSPEED){
-			velocity.y += dt * PIXELSPEED;
+			//accel = accel * mRotation;
+			Vector2D test(sin(-angle), -cos(-angle));
+			//velocity.y += (dt * PIXELSPEED) * test;
+			velocity  = velocity - (dt * PIXELSPEED) * test;;
 		}
+
 	}
 	if(Core::Input::IsPressed(Core::Input::KEY_UP)){
 		if(velocity.y >= -MAXSPEED){
-			velocity.y -= dt * PIXELSPEED;
+			//accel = accel * mRotation;
+			Vector2D test(sin(-angle), -cos(-angle));
+			//velocity.y -= dt * PIXELSPEED;
+			//velocity  = velocity + accel;
+			velocity  = velocity + (dt * PIXELSPEED) * test;;
 		}
+		
 	}
 	if(Core::Input::IsPressed(81)){
 		velocity.x = 0;
 		velocity.y = 0;
 	}
 
-	position = position + (velocity*dt);
+	
+	
 	if(mode == 'b'){
 		//bounce of edges
 		if(position.x < 0 || position.x > 1024){
@@ -128,6 +152,7 @@ void Ship::update(float dt){
 		if(position.y < -55){
 			position.y = 805;
 		}
+
 	}else if(mode == 'a'){
 		//arbiturary bounce
 		const unsigned int numLines = sizeof(border) / sizeof(*border);
@@ -147,6 +172,9 @@ void Ship::update(float dt){
 		}
 
 	}
+	info = Engine::Translation3D(position + (velocity * dt))* mRotation;
+	orb.update(dt);
+
 
 
 

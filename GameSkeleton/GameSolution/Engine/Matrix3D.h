@@ -16,15 +16,6 @@ namespace Engine{
 		float m[3][3];
 	public:
 		Matrix3D(){
-			/*for ( int x= 0; x < 3; x++){
-				for ( int y=0; y < 3; y++){
-					if(x == y){
-						m[x][y] = 1.0f;
-					}else{
-						m[x][y] = 0.0f;
-					}
-				}
-			}*/
 			m[0][0] = 1.0f;
 			m[0][1] = 0.0f;
 			m[0][2] = 0.0f;

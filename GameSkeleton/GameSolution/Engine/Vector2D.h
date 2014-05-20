@@ -2,6 +2,7 @@
 #define _VECTOR2D_H_
 
 #include"Math.h"
+#include"Vector3D.h"
 
 namespace Engine
 {
@@ -14,6 +15,10 @@ namespace Engine
 	};
 
 	inline Vector2D operator+(const Vector2D& left , const Vector2D& right){
+		return Vector2D(left.x + right.x, left.y + right.y);
+	}
+
+	inline Vector2D operator+(const Vector2D& left , const Vector3D& right){
 		return Vector2D(left.x + right.x, left.y + right.y);
 	}
 

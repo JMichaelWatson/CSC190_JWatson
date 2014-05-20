@@ -13,7 +13,6 @@ const int SCREEN_HEIGHT = 750;
 Ship myShip;
 EnemyShip eShip;
 
-
 bool Update (float dt){
 	if( Input::IsPressed(Input::KEY_ESCAPE)){
 		return true;
@@ -34,6 +33,7 @@ void Draw(Core::Graphics& graphics){
 
 void main()
 {
+	myShip.position = Vector2D(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
 	Core::Init( "Game Demo", SCREEN_WIDTH, SCREEN_HEIGHT);
 	Core::RegisterUpdateFn(Update);
 	Core::RegisterDrawFn(Draw);
