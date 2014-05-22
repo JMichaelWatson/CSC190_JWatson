@@ -1,5 +1,7 @@
 #include "Turret.h"
 #include "DrawValue.h"
+#include "Bullet.h"
+
 
 Vector2D tlines[] = {
 	Vector2D(-2,-12),
@@ -7,6 +9,9 @@ Vector2D tlines[] = {
 	Vector2D(2,0),
 	Vector2D(-2,0)
 };
+
+Bullet bullets[100];
+
 void Turret::draw(Graphics& graphics, Vector2D ship){
 	position = ship;
 	DrawValue dValue;
@@ -21,10 +26,15 @@ void Turret::draw(Graphics& graphics, Vector2D ship){
 		Vector3D second = tlines[(x+1) % num] * matrix;
 		graphics.DrawLine(first.x, first.y, second.x, second.y);
 	}
+	for (int count = 0; count < (sizeof(bullets) / sizeof(*bullets)); count++){
+		if(bullets[count].active){
+			bullets[count].draw(graphics);
+		}
+	}
 
 
 }
-
+float delay = 0.0f;
 void Turret::update(float dt){
 	dt;
 	int mouseX, mouseY;
@@ -35,14 +45,22 @@ void Turret::update(float dt){
 	Vector2D perp = Engine::CW(norm);
 	Vector2D perpc = Engine::CCW(perp);
 	rotation = Matrix3D(perp, perpc);
-
-
-
-	/*Vector2D result = mouse - position;
-	Vector2D norm = Engine::Normalized(result);
-	Vector2D perp = Engine::CW(norm);
-	rotation.m[0][0] =  perp.x;
-	rotation.m[1][0] = perp.y;
-	rotation.m[0][1] = norm.x;
-	rotation.m[1][1] = norm.y;*/
+	for (int count = 0; count < (sizeof(bullets) / sizeof(*bullets)); count++){
+		if(bullets[count].active){
+			bullets[count].update(dt);
+		}
+	}
+	delay -= dt;
+	if(Core::Input::IsPressed(Core::Input::BUTTON_LEFT)){
+		if(delay <= 0.0f){
+			for (int count = 0; count < (sizeof(bullets) / sizeof(*bullets)); count++){
+				if(!bullets[count].active){
+					bullets[count] = Bullet();
+					bullets[count].updateFire(dt,position, mouse);
+					delay = 0.25f;
+					break;
+				}
+			}
+		}
+	}
 }

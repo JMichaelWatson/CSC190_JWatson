@@ -86,6 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="DrawValue.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="main.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="Turret.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="DrawValue.h" />
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="Orbitz.h" />

@@ -30,7 +30,12 @@ void Draw(Core::Graphics& graphics){
 	graphics.SetBackgroundColor(RGB(0,25,0));
 	myShip.drawShip(graphics);
 	eShip.drawShip(graphics);
-	orb.draw(graphics,Vector2D(800, 500), 2);
+	Matrix3D startTemp = Engine::Translation3D(800,500);
+	orb.draw(graphics, startTemp,Vector2D(20,20), 5);
+	
+	
+	
+	
 	graphics.DrawLine(790,500, 810, 500);
 	graphics.DrawLine(800,490, 800, 510);
 	graphics.DrawLine(790,500,800,490);

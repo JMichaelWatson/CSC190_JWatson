@@ -14,11 +14,9 @@ class Orbitz
 {
 public:
 	float angle;
-	float angleC;
 	Matrix3D info;
 	void update(float dt);
-	void draw(Graphics& graphics, Vector2D position, float scale);
-	void drawC(Graphics& graphics, Vector2D pos, float scale);
-	void updateC(float dt);
+	void draw(Graphics& graphics, Matrix3D mat, Vector2D offset, float scale);
+
 };
 
