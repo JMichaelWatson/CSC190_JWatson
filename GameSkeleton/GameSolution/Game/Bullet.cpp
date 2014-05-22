@@ -2,7 +2,6 @@
 
 Bullet::Bullet(){
 	TIMETOLIVE = 5.0f;
-	beta = 0;
 }
 Vector2D bLines[] = {
 

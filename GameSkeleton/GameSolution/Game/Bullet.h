@@ -12,10 +12,8 @@ public:
 	Bullet();
 	float TIMETOLIVE;
 	bool active;
-	float beta;
 	Vector2D postion;
 	Vector2D velocity;
-	Vector2D end;
 	void update(float dt);
 	void draw(Graphics& graphics);
 	void updateFire(float dt, Vector2D start, Vector2D mouse);

@@ -89,8 +89,11 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="DrawValue.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Orbitz.cpp" />
+    <ClCompile Include="Partical.cpp" />
+    <ClCompile Include="ParticalEffect.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Turret.cpp" />
   </ItemGroup>
@@ -98,7 +101,10 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DrawValue.h" />
     <ClInclude Include="EnemyShip.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="Orbitz.h" />
+    <ClInclude Include="Partical.h" />
+    <ClInclude Include="ParticalEffect.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Turret.h" />
   </ItemGroup>
