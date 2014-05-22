@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Vector2D.h"
 #include "Vector3D.h"
 #include "Matrix3D.h"
@@ -10,15 +11,14 @@ using Engine::Vector3D;
 using Engine::Matrix3D;
 using Core::Graphics;
 
-class Orbitz
+
+class Turret
 {
 public:
-	float angle;
-	float angleC;
-	Matrix3D info;
+	Vector2D position;
+	Matrix3D rotation;
+	Matrix3D matrix;
 	void update(float dt);
-	void draw(Graphics& graphics, Vector2D position, float scale);
-	void drawC(Graphics& graphics, Vector2D pos, float scale);
-	void updateC(float dt);
+	void draw(Graphics& graphics, Vector2D ship);
 };
 

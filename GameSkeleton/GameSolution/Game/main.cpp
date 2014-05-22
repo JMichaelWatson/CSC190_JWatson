@@ -3,6 +3,7 @@
 #include "DrawValue.h"
 #include "Ship.h"
 #include "EnemyShip.h"
+#include "Orbitz.h"
 
 using Core::Input;
 using Engine::Vector2D;
@@ -12,6 +13,7 @@ const int SCREEN_HEIGHT = 750;
 
 Ship myShip;
 EnemyShip eShip;
+Orbitz orb;
 
 bool Update (float dt){
 	if( Input::IsPressed(Input::KEY_ESCAPE)){
@@ -20,6 +22,7 @@ bool Update (float dt){
 	
 	myShip.update(dt);
 	eShip.update(dt);
+	orb.update(dt);
 	return false;
 }
 
@@ -27,6 +30,13 @@ void Draw(Core::Graphics& graphics){
 	graphics.SetBackgroundColor(RGB(0,25,0));
 	myShip.drawShip(graphics);
 	eShip.drawShip(graphics);
+	orb.draw(graphics,Vector2D(800, 500), 2);
+	graphics.DrawLine(790,500, 810, 500);
+	graphics.DrawLine(800,490, 800, 510);
+	graphics.DrawLine(790,500,800,490);
+	graphics.DrawLine(810,500,800,490);
+	graphics.DrawLine(790,500,800,510);
+	graphics.DrawLine(810,500,800,510);
 }
 
 

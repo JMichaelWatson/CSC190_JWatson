@@ -29,11 +29,17 @@ namespace Engine{
 			m[2][2] = 1.0f;
 		}
 		Matrix3D(Vector2D vect1, Vector2D vect2){
-			Matrix3D();
+			
 			m[0][0] = vect1.x;
 			m[1][0] = vect1.y;
 			m[0][1] = vect2.x;
 			m[1][1] = vect2.y;
+
+			m[2][0] = 0.0f;
+			m[2][1] = 0.0f;
+			m[2][2] = 1.0f;
+			m[0][2] = 0.0f;
+			m[1][2] = 0.0f;
 		}
 		operator float*() {return &m[0][0];}
 			

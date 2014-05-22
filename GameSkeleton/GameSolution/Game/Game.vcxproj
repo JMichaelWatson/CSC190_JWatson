@@ -91,12 +91,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Orbitz.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="Turret.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawValue.h" />
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="Orbitz.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="Turret.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

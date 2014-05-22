@@ -1,12 +1,9 @@
 #include "Ship.h"
 #include "DrawValue.h"
-#include "Orbitz.h"
+#include "Turret.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 750;
-
-Orbitz orb;
-Orbitz orb2;
 
 Vector2D shipPoints[]={
 	Vector2D(-3.0f, -22.0f),
@@ -32,6 +29,7 @@ Vector2D border[] = {
 
 char mode = 'w';
 DrawValue dValue;
+Turret turret;
 void Ship::drawShip(Graphics& graphics){
 	char* response1 = "Current mode: ";
 	char* response ="";
@@ -73,11 +71,15 @@ void Ship::drawShip(Graphics& graphics){
 				second.x, second.y);
 		}
 	}
-	orb.draw(graphics, position, 4.0f);
-	/*Vector2D temp(orb.info.m[0][2], orb.info.m[1][2]);
-	orb2.draw(graphics,temp);*/
+	Vector2D temp(info.m[0][2], info.m[1][2]);
+	turret.draw(graphics, temp);
+
+	int mouseX, mouseY;
+	Core::Input::GetMousePos( mouseX, mouseY );
+	dValue.drawValue(graphics, 300,300,mouseX);
+	dValue.drawValue(graphics, 300,310,mouseY);
 }
-const int MAXSPEED = 1000;
+const int MAXSPEED = 600;
 const int PIXELSPEED = 500;
 void Ship::update(float dt){
 	accel.x = 0;
@@ -173,7 +175,7 @@ void Ship::update(float dt){
 
 	}
 	info = Engine::Translation3D(position + (velocity * dt))* mRotation;
-	orb.update(dt);
+	turret.update(dt);
 
 
 
