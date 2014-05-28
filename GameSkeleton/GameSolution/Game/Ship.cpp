@@ -34,6 +34,7 @@ char mode = 'w';
 DrawValue dValue;
 Turret turret;
 void Ship::drawShip(Graphics& graphics){
+	sManager.draw(graphics);
 	char* response1 = "Current mode: ";
 	char* response ="";
 	if(mode == 'w'){
@@ -85,6 +86,7 @@ void Ship::drawShip(Graphics& graphics){
 const int MAXSPEED = 600;
 const int PIXELSPEED = 500;
 void Ship::update(float dt){
+	sManager.update(dt);
 	accel.x = 0;
 	accel.y = -10;
 	Matrix3D mRotation;
@@ -119,6 +121,7 @@ void Ship::update(float dt){
 			Vector2D test(sin(-angle), -cos(-angle));
 			velocity  = velocity + (dt * PIXELSPEED) * test;
 		}
+		sManager.create(2, position);
 		
 	}
 	if(Core::Input::IsPressed(81)){

@@ -9,7 +9,7 @@ public:
 	vector<ParticalEffect> effects;
 	void draw(Graphics& graphics);
 	void update(float dt);
-	void create(int numOfEffect);
+	void create(int numOfEffect, Vector2D origin);
 	void clearMem();
 };
 

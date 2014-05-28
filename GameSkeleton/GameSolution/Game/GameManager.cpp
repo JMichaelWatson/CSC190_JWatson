@@ -9,7 +9,10 @@ void GameManager::Draw(Core::Graphics& graphics){
 	eShip.drawShip(graphics);
 	Matrix3D startTemp = Engine::Translation3D(800,500);
 	orb.draw(graphics, startTemp,Vector2D(20,20), 5);
-
+	graphics.SetColor(RGB(10,100,100));
+	graphics.DrawString(50,10,"Move ship with WASD or Arrow keys");
+	graphics.DrawString(50,23,"For one type of partical effect use right mouse button");
+	//graphics.SetColor(RGB(0,25,0));
 
 	graphics.DrawLine(790,500, 810, 500);
 	graphics.DrawLine(800,490, 800, 510);
@@ -17,7 +20,7 @@ void GameManager::Draw(Core::Graphics& graphics){
 	graphics.DrawLine(810,500,800,490);
 	graphics.DrawLine(790,500,800,510);
 	graphics.DrawLine(810,500,800,510);
-	
+
 	eManager.draw(graphics);
 }
 
@@ -27,7 +30,10 @@ void GameManager::Update(float dt){
 	orb.update(dt);
 	eManager.update(dt);
 	if(Core::Input::IsPressed(Core::Input::BUTTON_RIGHT)){
-		eManager.create(1);
+		int mouseX, mouseY;
+		Core::Input::GetMousePos( mouseX, mouseY );
+		Vector2D mouse((float)mouseX, (float)mouseY);
+		eManager.create(1,mouse);
 	}
 	eManager.clearMem();
 }

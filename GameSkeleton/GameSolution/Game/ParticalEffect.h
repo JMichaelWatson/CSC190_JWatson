@@ -10,13 +10,12 @@ class ParticalEffect
 {
 public:
 	ParticalEffect();
-	Vector2D origin;
 	Partical *partsA;
-	int timeTOLive;
+	float timeTOLive;
 	int count;
 	void draw(Graphics& graphics);
 	void update(float dt);
-	void updateFire(float dt, const int count, int type);
+	void updateFire(float dt, const int count, int type, Vector2D origin);
 	float randomFloat();
 	float randomInRange(float min, float max);
 	Vector2D RandomUnitVector();

@@ -4,7 +4,6 @@
 void EffectManager::draw(Graphics& graphics){
 	for(unsigned int i = 0; i < effects.size(); i++){
 		effects[i].draw(graphics);
-		graphics.DrawString(800,100, "Drawing effect");
 	}
 }
 
@@ -14,9 +13,14 @@ void EffectManager::update(float dt){
 	}
 }
 
-void EffectManager::create(int numOfEffect){
+void EffectManager::create(int numOfEffect, Vector2D origin){
 	ParticalEffect pEffect;
-	pEffect.updateFire(0, 200, numOfEffect);
+	int count = 200;
+	if(numOfEffect == 2)
+	{
+		count = 10;
+	}
+	pEffect.updateFire(0, count, numOfEffect, origin);
 	effects.push_back(pEffect);
 
 }
