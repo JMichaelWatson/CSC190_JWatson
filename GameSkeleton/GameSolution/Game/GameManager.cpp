@@ -1,4 +1,7 @@
 #include "GameManager.h"
+#include "EffectManager.h"
+
+EffectManager eManager;
 
 void GameManager::Draw(Core::Graphics& graphics){
 	graphics.SetBackgroundColor(RGB(0,25,0));
@@ -6,20 +9,27 @@ void GameManager::Draw(Core::Graphics& graphics){
 	eShip.drawShip(graphics);
 	Matrix3D startTemp = Engine::Translation3D(800,500);
 	orb.draw(graphics, startTemp,Vector2D(20,20), 5);
-	
-	
+
+
 	graphics.DrawLine(790,500, 810, 500);
 	graphics.DrawLine(800,490, 800, 510);
 	graphics.DrawLine(790,500,800,490);
 	graphics.DrawLine(810,500,800,490);
 	graphics.DrawLine(790,500,800,510);
 	graphics.DrawLine(810,500,800,510);
+	
+	eManager.draw(graphics);
 }
 
 void GameManager::Update(float dt){
 	myShip.update(dt);
 	eShip.update(dt);
 	orb.update(dt);
+	eManager.update(dt);
+	if(Core::Input::IsPressed(Core::Input::BUTTON_RIGHT)){
+		eManager.create(1);
+	}
+	eManager.clearMem();
 }
 
 const int SCREEN_WIDTH = 1024;

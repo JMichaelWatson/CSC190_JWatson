@@ -2,11 +2,15 @@
 
 Vector2D pLines[] = {
 
-	Vector2D(-2,-2),
-	Vector2D(2,-2),
-	Vector2D(2,2),
-	Vector2D(-2,2)
+	Vector2D(-1,-1),
+	Vector2D(1,-1),
+
 };
+
+Partical::Partical(){
+	timeToLive = 2.0f;;
+	active = false;
+}
 void Partical::draw(Graphics& graphics){
 	{
 		position = position + velocity;
@@ -22,9 +26,7 @@ void Partical::draw(Graphics& graphics){
 void Partical::updateFire(float dt, Vector2D tstart, Vector2D mouse){
 	timeToLive -= dt;
 	Vector2D temp = mouse - tstart;
-	velocity = Engine::Normalized(temp);
-	velocity.x *= 5.0f;
-	velocity.y *= 5.0f;
+	velocity = temp;
 	position = tstart;
 	active = true;
 }

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _PARTICAL_H_
+#define _PARTICAL_H_
 
 #include "Engine.h"
 #include "Core.h"
@@ -13,7 +14,7 @@ using Engine::Vector2D;
 class Partical
 {
 public:
-
+	Partical();
 	bool active;
 	float timeToLive;
 	Vector2D position;
@@ -23,3 +24,4 @@ public:
 	void updateFire(float dt, Vector2D tstart, Vector2D mouse);
 };
 
+#endif

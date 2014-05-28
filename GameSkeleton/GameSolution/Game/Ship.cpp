@@ -1,9 +1,12 @@
 #include "Ship.h"
 #include "DrawValue.h"
 #include "Turret.h"
+#include "EffectManager.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 750;
+
+EffectManager sManager;
 
 Vector2D shipPoints[]={
 	Vector2D(-3.0f, -22.0f),
@@ -96,30 +99,25 @@ void Ship::update(float dt){
 		mode = 'a';
 	}
 
-	if(Core::Input::IsPressed(Core::Input::KEY_RIGHT)){
+	if(Core::Input::IsPressed(Core::Input::KEY_RIGHT) || Core::Input::IsPressed('D')){
 		angle -= .05f;
 		accel = accel * Engine::Rotation3D(angle);
 	}
-	if(Core::Input::IsPressed(Core::Input::KEY_LEFT)){
+	if(Core::Input::IsPressed(Core::Input::KEY_LEFT) || Core::Input::IsPressed('A')){
 		angle += .05f;
 		accel = accel * Engine::Rotation3D(angle);
 	}
-	if(Core::Input::IsPressed(Core::Input::KEY_DOWN)){
+	if(Core::Input::IsPressed(Core::Input::KEY_DOWN) || Core::Input::IsPressed('S')){
 		if(velocity.y <= MAXSPEED){
-			//accel = accel * mRotation;
 			Vector2D test(sin(-angle), -cos(-angle));
-			//velocity.y += (dt * PIXELSPEED) * test;
 			velocity  = velocity - (dt * PIXELSPEED) * test;;
 		}
 
 	}
-	if(Core::Input::IsPressed(Core::Input::KEY_UP)){
+	if(Core::Input::IsPressed(Core::Input::KEY_UP) || Core::Input::IsPressed('W')){
 		if(velocity.y >= -MAXSPEED){
-			//accel = accel * mRotation;
 			Vector2D test(sin(-angle), -cos(-angle));
-			//velocity.y -= dt * PIXELSPEED;
-			//velocity  = velocity + accel;
-			velocity  = velocity + (dt * PIXELSPEED) * test;;
+			velocity  = velocity + (dt * PIXELSPEED) * test;
 		}
 		
 	}

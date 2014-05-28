@@ -88,6 +88,7 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="DrawValue.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -100,6 +101,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DrawValue.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Orbitz.h" />
