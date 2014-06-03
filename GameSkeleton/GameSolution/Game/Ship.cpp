@@ -1,12 +1,9 @@
 #include "Ship.h"
-#include "DrawValue.h"
-#include "Turret.h"
-#include "EffectManager.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 750;
 
-EffectManager sManager;
+
 
 Vector2D shipPoints[]={
 	Vector2D(-3.0f, -22.0f),
@@ -46,6 +43,7 @@ void Ship::drawShip(Graphics& graphics){
 	if(mode == 'a'){
 		response = "Arbiturary Bounce";
 	}
+	graphics.SetColor(RGB(100,25,100));
 	graphics.DrawString(100,40,"Hit 1..Wrap 2..Bounce 3..Arbitrary Bounce");
 	graphics.DrawString(100,50,response1); 
 	graphics.SetColor(RGB(100,200,100));
