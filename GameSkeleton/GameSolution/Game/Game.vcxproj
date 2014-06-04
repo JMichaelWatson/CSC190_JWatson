@@ -92,8 +92,6 @@
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="hr_time.cpp" />
-    <ClCompile Include="Porfiler.cpp" />
-    <ClCompile Include="Profiler.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Orbitz.cpp" />
@@ -109,8 +107,6 @@
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="hr_time.h" />
-    <ClInclude Include="Porfiler.h" />
-    <ClInclude Include="Profiler.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Orbitz.h" />
     <ClInclude Include="Partical.h" />

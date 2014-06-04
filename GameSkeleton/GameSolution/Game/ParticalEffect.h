@@ -10,7 +10,7 @@ class ParticalEffect
 {
 public:
 	ParticalEffect();
-	Partical *partsA;
+	Partical* partsA;
 	float timeTOLive;
 	int count;
 	void draw(Graphics& graphics);

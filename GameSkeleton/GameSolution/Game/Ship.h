@@ -9,7 +9,6 @@
 #include "DrawValue.h"
 #include "Turret.h"
 #include "EffectManager.h"
-#include "Porfiler.h"
 
 using Engine::Vector2D;
 using Core::Graphics;
@@ -18,6 +17,7 @@ using Engine::Matrix3D;
 
 class Ship
 {
+private:
 	EffectManager sManager;
 public:
 	Vector2D position;

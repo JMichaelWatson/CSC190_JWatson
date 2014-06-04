@@ -37,7 +37,6 @@ void GameManager::Draw(Core::Graphics& graphics){
 void GameManager::Update(float dt){
 	
 	clock.newFrame();
-
 	myShip.update(dt);
 	eShip.update(dt);
 	orb.update(dt);
